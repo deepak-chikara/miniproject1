@@ -1,0 +1,22 @@
+<html>
+<body bgcolor=black>
+<form method=post action=JPGraphh.php>
+<pre>
+<font color=yellow>
+<?php
+echo "                                                                Name to be inputted ::  <input type=text name=s1><br><br>";
+
+echo "<br>                                                                Year To Be Selected ::  <select name=s2><br><br>";
+for($i=1944;$i<=2013;$i++)
+echo "<option value=$i>$i";
+echo "</select>";
+
+echo "<br><br>                                                                Gender Choice          <input type=radio  name=r1 value=M>Male<input type=radio  name=r1 value=F>Female<input type=radio  name=r1 value=B>Both";
+?>
+<br>                     
+                                                                               <input type=submit value=Click>
+</font>
+</pre>
+</form>
+</body>
+</html>
