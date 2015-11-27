@@ -1,0 +1,57 @@
+<html>
+<body bgcolor=black>
+<center>
+<font color=yellow size=10>RESULTS</font>
+<table bgcolor=cyan cellspacing=10 cellpadding=10 border=5 bordercolor=blue>
+<tr>
+<th>Name 
+<th>No Of Births
+<th>Ranking
+</tr>
+<?php
+$yr=$_POST["s1"];
+$top=$_POST["s2"];
+$gen=$_POST["r1"];
+$con=mysqli_connect("localhost","root","","dpk_db");
+if($con)
+{
+	if($gen=="F")
+	{
+	$tblnm="female_cy".$yr."_top";
+	$qry="SELECT * FROM $tblnm limit $top";
+	}
+	if($gen=="M")
+	{
+	$tblnm="male_cy".$yr."_top";
+	$qry="SELECT * FROM $tblnm limit $top";
+	}
+	if($gen=="B")
+	{
+	$tblnm1="male_cy".$yr."_top";
+	$tblnm2="female_cy".$yr."_top";
+	$qry="select  `COL 1`,`COL 2`,`COL 3` from (select  `COL 1`,`COL 2`,`COL 3` from $tblnm1 union all select `COL 1`,`COL 2`,`COL 3` from $tblnm2) a limit $top";
+	
+	}
+	
+	$res=mysqli_query($con,$qry);
+	if($res)
+	{
+		while($dt=mysqli_fetch_row($res))
+		{
+			echo "<tr><td>$dt[0]<td align=center>$dt[1]<td align=center>$dt[2]<br></tr>";
+		}
+	}
+	else
+	{
+		echo "Problem with query";
+	}
+}
+else
+{
+	echo "Problem with database ";
+}
+?>
+</table>
+</center>
+</body>
+</html>
