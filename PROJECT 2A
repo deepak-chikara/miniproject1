@@ -1,0 +1,17 @@
+<?php
+
+$con=mysqli_connect("localhost","root","","dpk_db");
+if (mysqli_connect_errno()) {
+  echo "CONNECTION FAILED : " . mysqli_connect_error();
+}	
+for($i=1945;$i<=2013;$i++)
+{
+$tbl="female_cy".$i."_top";
+$qry="update $tbl set BirthYr=$i";
+$res = mysqli_query($con,$qry);
+if($res)
+echo "<br>Hi";
+else
+echo "<br>Hiii";
+}
+?>
